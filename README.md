@@ -184,6 +184,26 @@ Estes elementos são **totalmente opcionais** e darão pontos extras:
 | **Formulário de Contato** | Form funcional com campos: nome, email, mensagem |
 | **Footer** | Informações básicas de rodapé |
 
+---
+
+## 🎨 Exemplos Visuais de Inspiração
+
+Na pasta [`examples/`](./examples) você encontrará **exemplos visuais** de design que podem servir como **inspiração** para suas interfaces:
+
+### 📸 O que tem na pasta:
+
+- **`landpage_1.jpg`, `landpage_2.jpg`, `landpage_3.jpg`** - Exemplos de design de landpages
+- **`login_1.jpg`, `login_2.jpg`, `login_3.jpg`** - Exemplos de telas de login
+
+💡 **Como usar:**
+- Use como **referência visual** para criar seu próprio design
+- Você **NÃO precisa copiar** esses designs exatamente
+- Sinta-se livre para criar algo completamente diferente
+- O importante é ter uma interface **limpa, organizada e funcional**
+
+🎯 **Dica:** Analise os exemplos para entender elementos como layout, cores, espaçamento e hierarquia visual!
+
+---
 
 ### 🔐 Área Administrativa
 
