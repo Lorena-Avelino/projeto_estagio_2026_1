@@ -93,7 +93,7 @@ Inclua um arquivo `README.md` com:
 | **Model** | Mensagem com campos: `nome`, `email`, `mensagem`, `data_envio` |
 | **Autenticação** | Usar o sistema de autenticação do Django (criar superusuário) |
 | **Funcionalidades** | • Salvar mensagens do formulário no banco<br>• Login com superusuário criado<br>• Visualizar mensagens em painel customizado protegido por login |
-| **Views e URLs** | • View para formulário de contato<br>• View de login customizada<br>• View protegida (`@login_required`) para o painel de mensagens |
+| **Views e URLs** | • View para landpage com informações do produto e formulário de contato<br>• View de login customizada<br>• View protegida (`@login_required`) para o painel de mensagens |
 
 ### 🎨 Frontend
 
