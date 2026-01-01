@@ -9,7 +9,6 @@
 </head>
 
 <body class="bg-gray-50 text-gray-900">
-    <!-- Toasts (Django messages) -->
     {% if messages %}
     <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-3 w-[92vw] max-w-sm">
         {% for message in messages %}
@@ -213,13 +212,10 @@
                     setTimeout(() => toast.remove(), 200);
                 };
 
-                // animação inicial
                 toast.classList.add("transition", "duration-200", "ease-out");
 
-                // fechar manual
                 closeBtn?.addEventListener("click", removeToast);
 
-                // fechar automático
                 setTimeout(removeToast, timeout);
             });
         })();

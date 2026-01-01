@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Mensagem
 
+from django.contrib.auth.decorators import login_required
+
 def landpage(request):
     if request.method == 'POST':
         nome = (request.POST.get("nome") or "").strip()
@@ -17,3 +19,8 @@ def landpage(request):
             messages.error(request, 'Por favor, preencha todos os campos.')
 
     return render(request, 'landpage.html')
+
+@login_required(login_url="login")
+def painel_mensagens(request):
+    mensagens = Mensagem.objects.all().order_by("-data_envio")
+    return render(request, "painel.html", {"mensagens": mensagens})

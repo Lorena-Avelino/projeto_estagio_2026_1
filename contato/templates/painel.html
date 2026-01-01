@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel — Mupi Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <header class="max-w-5xl mx-auto px-4 py-6 flex items-center justify-between">
+        <a href="/" class="font-bold text-xl">Mupi Digital</a>
+
+        <div class="text-sm flex items-center gap-3">
+            <span class="text-gray-600">Logado como <b>{{ user.username }}</b></span>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="rounded-lg border border-gray-200 px-3 py-1.5 hover:bg-gray-50">
+                    Sair
+                </button>
+            </form>
+
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+        <section class="bg-white rounded-2xl shadow-sm p-6 md:p-10">
+            <div class="flex items-end justify-between gap-4 flex-wrap">
+                <div>
+                    <h1 class="text-2xl font-bold">Mensagens recebidas</h1>
+                    <p class="mt-2 text-gray-600">
+                        Lista de mensagens enviadas pela landpage, ordenadas da mais recente para a mais antiga.
+                    </p>
+                </div>
+
+                <a href="/" class="text-sm underline text-gray-700 hover:text-gray-900">
+                    Voltar para a landpage
+                </a>
+            </div>
+
+            <div class="mt-6 overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="text-left text-gray-600 border-b">
+                            <th class="py-3 pr-4">Data</th>
+                            <th class="py-3 pr-4">Nome</th>
+                            <th class="py-3 pr-4">E-mail</th>
+                            <th class="py-3">Mensagem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in mensagens %}
+                        <tr class="border-b align-top">
+                            <td class="py-3 pr-4 whitespace-nowrap text-gray-600">
+                                {{ m.data_envio|date:"d/m/Y H:i" }}
+                            </td>
+                            <td class="py-3 pr-4 font-medium">{{ m.nome }}</td>
+                            <td class="py-3 pr-4">
+                                <a class="underline" href="mailto:{{ m.email }}">{{ m.email }}</a>
+                            </td>
+                            <td class="py-3">
+                                <div class="max-w-xl whitespace-pre-wrap">{{ m.mensagem }}</div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="py-6 text-gray-600">
+                                Ainda não há mensagens cadastradas.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
