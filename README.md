@@ -24,6 +24,23 @@ A aplicação consiste em uma **landpage pública com formulário de contato**, 
 
 ---
 
+### Funcionalidades extras (diferenciais)
+
+Além dos requisitos obrigatórios, foram implementados alguns diferenciais com foco em
+usabilidade, organização do código e experiência do usuário:
+
+- ⭐ Feedback visual com **toasts flutuantes** (sucesso/erro), com auto-fechamento e botão de fechar
+- ⭐ Layout totalmente **responsivo**, incluindo:
+  - Menu mobile (hambúrguer) na landpage
+  - Visualização alternativa em **cards no mobile** para o painel administrativo
+- ⭐ Filtro de busca por texto no painel administrativo
+- ⭐ Uso de **template base (`base.html`)** para centralizar:
+  - favicon
+  - TailwindCSS
+  - estrutura de layout
+
+---
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **Python 3.10+**
