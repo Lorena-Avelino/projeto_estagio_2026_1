@@ -1,3 +1,4 @@
+{%load static %}
 <!doctype html>
 <html lang="pt-br">
 
@@ -24,7 +25,8 @@
 
             <div class="flex-1">
                 <p class="font-semibold">
-                    {% if message.tags == 'success' %}Sucesso{% elif message.tags == 'error' %}Atenção{% else %}Info{% endif %}
+                    {% if message.tags == 'success' %}Sucesso{% elif message.tags == 'error' %}Atenção{% else
+                    %}Info{%endif %}
                 </p>
                 <p class="text-gray-700">{{ message }}</p>
             </div>
@@ -38,14 +40,30 @@
     {% endif %}
 
     <header class="max-w-5xl mx-auto px-4 py-6 flex items-center justify-between">
-        <div class="font-bold text-xl">Mupi Digital</div>
-        <!-- <img src="/static/images/logo.png" class="h-7" alt="Mupi" /> -->
-        <nav class="text-sm space-x-4">
+        <a href="/" class="flex items-center gap-2 font-bold text-xl">
+            <img src="{% static 'images/logo.png' %}" class="h-7" alt="Mupi" />
+            <span>Mupi Digital</span>
+        </a>
+
+        <nav class="hidden md:flex text-sm items-center space-x-4">
             <a class="hover:underline" href="#servicos">Serviços</a>
             <a class="hover:underline" href="#cases">Cases</a>
             <a class="hover:underline" href="#contato">Contato</a>
         </nav>
+
+        <button id="menuBtn"
+            class="md:hidden inline-flex items-center justify-center rounded-lg border border-gray-200 p-2 hover:bg-gray-50"
+            aria-label="Abrir menu" aria-expanded="false">
+            ☰
+        </button>
     </header>
+    <div id="mobileMenu" class="md:hidden hidden max-w-5xl mx-auto px-4">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex flex-col gap-3">
+            <a class="hover:underline" href="#servicos">Serviços</a>
+            <a class="hover:underline" href="#cases">Cases</a>
+            <a class="hover:underline" href="#contato">Contato</a>
+        </div>
+    </div>
 
     <main class="max-w-5xl mx-auto px-4">
         <section class="bg-white rounded-2xl shadow-sm p-6 md:p-10">
@@ -153,7 +171,7 @@
             <div id="contato" class="mt-10">
                 <div class="rounded-2xl bg-gray-50 border border-gray-100 p-6 md:p-8">
                     <h2 class="text-2xl font-semibold">Solicite uma proposta</h2>
-                    
+
                     <p class="mt-2 text-gray-600">
                         Informe seu objetivo e contexto. Retornamos com perguntas rápidas e um plano inicial.
                     </p>
@@ -218,6 +236,25 @@
 
                 setTimeout(removeToast, timeout);
             });
+        })();
+
+        (function () {
+            const btn = document.getElementById("menuBtn");
+            const menu = document.getElementById("mobileMenu");
+            if (!btn || !menu) return;
+
+            const toggle = () => {
+                const isHidden = menu.classList.contains("hidden");
+                menu.classList.toggle("hidden");
+                btn.setAttribute("aria-expanded", String(isHidden));
+            };
+
+            btn.addEventListener("click", toggle);
+
+            // Fecha ao clicar em um link
+            menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
+                if (!menu.classList.contains("hidden")) toggle();
+            }));
         })();
     </script>
 
