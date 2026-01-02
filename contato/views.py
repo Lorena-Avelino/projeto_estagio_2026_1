@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Mensagem
+from django.db.models import Q
 
 from django.contrib.auth.decorators import login_required
 
@@ -22,5 +23,13 @@ def landpage(request):
 
 @login_required(login_url="login")
 def painel_mensagens(request):
-    mensagens = Mensagem.objects.all().order_by("-data_envio")
-    return render(request, "painel.html", {"mensagens": mensagens})
+    q = (request.GET.get("q") or "").strip()
+    mensagens = Mensagem.objects.all()
+    if q:   
+        mensagens = mensagens.filter(
+            Q(nome__icontains=q) |
+            Q(email__icontains=q) |
+            Q(mensagem__icontains=q)
+        )
+    mensagens = mensagens.order_by('-data_envio')
+    return render(request, "painel.html", {"mensagens": mensagens, "q": q})
